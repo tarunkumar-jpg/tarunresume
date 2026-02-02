@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarun Kumar - Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.crossorigin" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0e17;
+            --color-surface: #151b2b;
+            --color-surface-light: #1e2738;
+            --color-text: #e8edf4;
+            --color-text-muted: #9aa5b8;
+            --color-accent: #00d9ff;
+            --color-accent-warm: #ff6b35;
+            --color-accent-gradient: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --shadow-glow: 0 0 40px rgba(0, 217, 255, 0.15);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header/Hero Section */
+        header {
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .hero {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Section Styling */
+        section {
+            margin: 4rem 0;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--color-text);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--color-accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            background: var(--color-surface-light);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .skill-category p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Experience Timeline */
+        .experience-list {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-list::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-accent-warm) 100%);
+        }
+
+        .experience-item {
+            margin-bottom: 3rem;
+            position: relative;
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--color-bg), 0 0 20px var(--color-accent);
+        }
+
+        .experience-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(0, 217, 255, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-company {
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .experience-period {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .experience-achievements {
+            margin-top: 1rem;
+        }
+
+        .experience-achievements li {
+            margin-bottom: 0.75rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .experience-achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-size: 1.2rem;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .education-item {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .education-degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-year {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-item {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .cert-item:hover {
+            background: var(--color-surface-light);
+            border-color: var(--color-accent);
+            transform: scale(1.05);
+        }
+
+        /* Achievements */
+        .achievement-box {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            margin-top: 2rem;
+        }
+
+        .achievement-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--color-text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .experience-list {
+                padding-left: 1.5rem;
+            }
+
+            .experience-item {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="hero">
+                <h1 class="hero-title">Tarun Kumar</h1>
+                <p class="hero-subtitle">Product Manager | ex-Founder freshOk, Gigzman</p>
+                <p class="hero-description">
+                    DTU graduate with 4+ years of experience specializing in product management and entrepreneurship. 
+                    Raised over INR 10 crore from leading venture capital firms and angel investors. 
+                    Led teams ranging from 6 to 50 members, executing strategic initiatives and bootstrapping businesses worth ₹62+ lakh.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">+91 7210499455</div>
+                    <div class="contact-item">kumartarun276@gmail.com</div>
+                    <div class="contact-item">/tarunmottlia</div>
+                    <div class="contact-item">Sec 104, Gurugram, Haryana</div>
+                </div>
+            </div>
+        </header>
+
+        <section id="skills">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Leadership</h3>
+                    <p>Team Leadership & Management, Strategic Planning & Execution</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Product</h3>
+                    <p>Product Roadmap, Agile Methodology, KPIs Tracking</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical</h3>
+                    <p>Advanced Excel, Figma/XD, Project Management</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Operations</h3>
+                    <p>Operational Efficiency, Data-Driven Decision Making</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Finance</h3>
+                    <p>Financial Management & Budgeting, Framework Development</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Growth</h3>
+                    <p>Startup Scaling, Innovation & Problem Solving</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Product Manager - GI Lead</div>
+                            <div class="experience-company">Valuenable (Contract)</div>
+                        </div>
+                        <div class="experience-period">Aug 25 - Nov 25</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Led development of automated health claim assistance product using OCR+NLP extraction</li>
+                        <li>Designed pricing & coverage engine combining ABHA pricing, internal DB & AI-derived logic</li>
+                        <li>Built cashless & reimbursement workflows improving end-to-end claim execution efficiency</li>
+                        <li>Defined structured policy bond & hospital bills schema for rule-based claim automation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Growth Manager</div>
+                            <div class="experience-company">PolicyX</div>
+                        </div>
+                        <div class="experience-period">Jan 25 - Jul 25</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Launched Xurance.in vertical enabling embedded loan-protection products for NBFCs</li>
+                        <li>Built instant premium calculator and seamless quote-to-policy onboarding flow</li>
+                        <li>Drove early NBFC partnerships and initiated integration in loan disbursement journeys</li>
+                        <li>Designed GTM playbooks and optimized conversion KPIs to strengthen PMF</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Lead Product</div>
+                            <div class="experience-company">Meesra</div>
+                        </div>
+                        <div class="experience-period">Oct 23 - Sep 24</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Led NBFC credit channel launch with 6-member team</li>
+                        <li>Developed portals for 250+ agents & sales, operations, and accounts teams</li>
+                        <li>Built TAT algorithms ensuring 100% secure end-to-end data handling</li>
+                        <li>Guided strategic initiatives, including pitch decks and KPIs development</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Founder</div>
+                            <div class="experience-company">Gigzman</div>
+                        </div>
+                        <div class="experience-period">Dec 21 - Aug 23</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Bootstrapped 0 to ₹62+ lakh projects with lean team, achieving 80%+ completion rate</li>
+                        <li>Organized 2500+ freelancers into 9 categories by price and quality</li>
+                        <li>Self delivered 15+ product design and development projects successfully</li>
+                        <li>Secured placement in DTUIIF Incubator for business growth opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Co-Founder & Director</div>
+                            <div class="experience-company">freshOk (backed by Kalaari Capital)</div>
+                        </div>
+                        <div class="experience-period">Nov 20 - Dec 21</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Raised $1.12M funding from angels and Kalaari Capital for expansion</li>
+                        <li>Improved gross margin from 2% to 27% in F&V sector</li>
+                        <li>Developed in house tools enhancing customer experience and operational efficiency</li>
+                        <li>Built price & demand prediction engine achieving over 70% accuracy in forecasts</li>
+                        <li>Single-handedly managed 65% of organizational funds with financial discipline</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Product Design Intern</div>
+                            <div class="experience-company">Delhi Govt. (Connection Aid)</div>
+                        </div>
+                        <div class="experience-period">Feb 19 - Apr 19</div>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Design mobile app and website UI/UX to meet project's vision</li>
+                        <li>Collaborate with team members to implement new features and improvements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-item">
+                    <div class="education-degree">B.Tech (Engineering Physics)</div>
+                    <div class="education-school">Delhi Technological University (formerly DCE)</div>
+                    <div class="education-year">2021</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-degree">High School (12th)</div>
+                    <div class="education-school">Kendriya Vidyalaya Janak Puri</div>
+                    <div class="education-year">2016 - 87.9%</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h2 class="section-title">Certifications & Tools</h2>
+            <div class="cert-grid">
+                <div class="cert-item">Advanced Excel</div>
+                <div class="cert-item">Figma / XD</div>
+                <div class="cert-item">Project Management</div>
+                <div class="cert-item">KPIs Tracking</div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2 class="section-title">Leadership & Achievements</h2>
+            <div class="achievement-box">
+                <h3>College Societies Leadership</h3>
+                <ul class="experience-achievements">
+                    <li>Head Coordinator Orientation - DTU</li>
+                    <li>Technical Head - Aahvaan DTU (Sports Society)</li>
+                    <li>Technical Advisory & Head Designer - Invictus DTU</li>
+                </ul>
+            </div>
+            <div class="achievement-box" style="margin-top: 1rem;">
+                <h3>Hackathon Achievement</h3>
+                <ul class="experience-achievements">
+                    <li>Attained Second position in Hackathon organized by Entrepreneurship Cell (eCELL) - DTU</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Tarun Kumar. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-item, .skill-category, .education-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Add smooth scrolling for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

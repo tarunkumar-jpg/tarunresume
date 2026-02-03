@@ -17,27 +17,19 @@ window.addEventListener("DOMContentLoaded", function() {
   const btn = document.getElementById("add_lead");
 
   if (!btn) {
-    console.log("Add Lead button not found");
+    alert("❌ Button NOT found");
     return;
   }
 
+  alert("✅ Script loaded, button found");
+
   btn.addEventListener("click", function(e) {
     e.preventDefault();
-
-    console.log("Add Lead clicked - GA4 event firing");
-
-    gtag('event', 'add_lead_click', {
-      event_category: 'lead',
-      event_label: 'WhatsApp Lead Button'
-    });
-
-    // Let GA4 send event, then open WhatsApp
-    setTimeout(() => {
-      window.open(btn.href, "_blank");
-    }, 300);
+    alert("🔥 Button CLICK event fired");
   });
 });
 </script>
+
 
 
 

@@ -17,18 +17,30 @@ window.addEventListener("DOMContentLoaded", function() {
   const btn = document.getElementById("add_lead");
 
   if (!btn) {
-    alert("❌ Button NOT found");
+    console.log("Add Lead button not found");
     return;
   }
 
-  alert("✅ Script loaded, button found");
-
   btn.addEventListener("click", function(e) {
     e.preventDefault();
-    alert("🔥 Button CLICK event fired");
+
+    console.log("GA4 add_lead_click fired");
+
+    // Send GA4-native event
+    gtag('event', 'add_lead_click', {
+      event_category: 'lead',
+      event_label: 'WhatsApp Lead Button',
+      send_to: 'G-YSJL8Y4Y6B'
+    });
+
+    // Give GA4 time to send, then open WhatsApp
+    setTimeout(() => {
+      window.open(btn.href, "_blank");
+    }, 400);
   });
 });
 </script>
+
 
 
 

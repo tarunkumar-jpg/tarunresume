@@ -13,7 +13,7 @@
 </script>
 
 <script>
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function() {
   const btn = document.getElementById("add_lead");
 
   if (!btn) {
@@ -21,30 +21,24 @@ window.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  btn.addEventListener("click", function (e) {
+  btn.addEventListener("click", function(e) {
     e.preventDefault();
 
-    console.log("Add Lead clicked - sending event");
+    console.log("Add Lead clicked - GA4 event firing");
 
-    const url = "https://www.google-analytics.com/g/collect";
-
-    const params = new URLSearchParams({
-      v: "2",
-      tid: "G-YSJL8Y4Y6B",
-      cid: Math.random().toString(36).substring(2),
-      en: "add_lead_click",
-      dl: window.location.href
+    gtag('event', 'add_lead_click', {
+      event_category: 'lead',
+      event_label: 'WhatsApp Lead Button'
     });
 
-    navigator.sendBeacon(url, params);
-
-    // Open WhatsApp after event is sent
+    // Let GA4 send event, then open WhatsApp
     setTimeout(() => {
       window.open(btn.href, "_blank");
     }, 300);
   });
 });
 </script>
+
 
 
 

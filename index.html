@@ -10,6 +10,18 @@
 
   gtag('config', 'G-YSJL8Y4Y6B');
 </script>
+
+<script>
+document.getElementById("add_lead").addEventListener("click", function() {
+  gtag('event', 'add_lead_click', {
+    event_category: 'lead',
+    event_label: 'Add Lead Button',
+    value: 1
+  });
+});
+</script>
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarun Kumar - Product Manager</title>

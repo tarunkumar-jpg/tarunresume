@@ -12,14 +12,31 @@
 </script>
 
 <script>
-document.getElementById("add_lead").addEventListener("click", function() {
-  gtag('event', 'add_lead_click', {
-    event_category: 'lead',
-    event_label: 'Add Lead Button',
-    value: 1
+window.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("add_lead");
+
+  if (!btn) {
+    console.log("Add Lead button not found");
+    return;
+  }
+
+  btn.addEventListener("click", function(e) {
+    e.preventDefault(); // stop instant redirect
+
+    gtag('event', 'add_lead_click', {
+      event_category: 'lead',
+      event_label: 'WhatsApp Lead Button',
+      value: 1
+    });
+
+    // Let GA4 send the event, then open WhatsApp
+    setTimeout(function() {
+      window.open(btn.href, "_blank");
+    }, 300);
   });
 });
 </script>
+
 
     
     <meta charset="UTF-8">

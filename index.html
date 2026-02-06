@@ -71,34 +71,36 @@ window.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-    <script>
+   <script>
 window.addEventListener("DOMContentLoaded", function() {
   const btn = document.getElementById("payment_done");
 
-  if (!btn) {
-    console.log("Payment button not found");
-    return;
-  }
+  if (!btn) return;
 
   btn.addEventListener("click", function(e) {
     e.preventDefault();
 
-    console.log("GA4 add_lead_click fired");
+    const amount = 150;                 // ₹150 revenue
+    const txnId = "TXN_" + Date.now();  // unique transaction id
 
-    // Send GA4-native event
-    gtag('event', 'payment_success', {
-      event_category: 'lead',
-      event_label: 'Payment Done',
-      send_to: 'G-YSJL8Y4Y6B'
+    gtag('event', 'purchase', {
+      transaction_id: txnId,
+      value: amount,
+      currency: 'INR',
+      items: [{
+        item_name: 'Consultation',
+        price: amount,
+        quantity: 1
+      }]
     });
 
-    // Give GA4 time to send, then open WhatsApp
     setTimeout(() => {
       window.open(btn.href, "_blank");
-    }, 400);
+    }, 500);
   });
 });
 </script>
+
 
 
 

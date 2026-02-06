@@ -42,7 +42,63 @@ window.addEventListener("DOMContentLoaded", function() {
 </script>
 
 
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("add_cart");
 
+  if (!btn) {
+    console.log("Add to Cart button not found");
+    return;
+  }
+
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    console.log("GA4 add_lead_click fired");
+
+    // Send GA4-native event
+    gtag('event', 'add_to_cart', {
+      event_category: 'lead',
+      event_label: 'Add to Cart',
+      send_to: 'G-YSJL8Y4Y6B'
+    });
+
+    // Give GA4 time to send, then open WhatsApp
+    setTimeout(() => {
+      window.open(btn.href, "_blank");
+    }, 400);
+  });
+});
+</script>
+
+    <script>
+window.addEventListener("DOMContentLoaded", function() {
+  const btn = document.getElementById("payment_done");
+
+  if (!btn) {
+    console.log("Payment button not found");
+    return;
+  }
+
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    console.log("GA4 add_lead_click fired");
+
+    // Send GA4-native event
+    gtag('event', 'payment_success', {
+      event_category: 'lead',
+      event_label: 'Payment Done',
+      send_to: 'G-YSJL8Y4Y6B'
+    });
+
+    // Give GA4 time to send, then open WhatsApp
+    setTimeout(() => {
+      window.open(btn.href, "_blank");
+    }, 400);
+  });
+});
+</script>
 
 
 
@@ -680,6 +736,30 @@ window.addEventListener("DOMContentLoaded", function() {
                 </p>
                 <a id="add_lead" href="https://api.whatsapp.com/send?phone=917210499455&text=Connect%20with%20tarun" target="_blank" style="display: inline-block; padding: 1.5rem 4rem; font-size: 1.3rem; font-weight: 700; text-decoration: none; color: #0a0e17; background: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%); border-radius: 50px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3); position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.05em;" onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 20px 60px rgba(0, 217, 255, 0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 40px rgba(0, 217, 255, 0.3)';">
                     Add Lead
+                </a>
+            </div>
+        </section>
+
+         <section id="add-lead" style="margin: 5rem 0;">
+            <div style="text-align: center;">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 1.5rem;">Ready to Connect?</h2>
+                <p style="color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Let's discuss how I can contribute to your team's success
+                </p>
+                <a id="add_cart" href="https://api.whatsapp.com/send?phone=917210499455&text=Connect%20with%20tarun" target="_blank" style="display: inline-block; padding: 1.5rem 4rem; font-size: 1.3rem; font-weight: 700; text-decoration: none; color: #0a0e17; background: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%); border-radius: 50px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3); position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.05em;" onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 20px 60px rgba(0, 217, 255, 0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 40px rgba(0, 217, 255, 0.3)';">
+                    Add to Cart
+                </a>
+            </div>
+        </section>
+
+         <section id="add-lead" style="margin: 5rem 0;">
+            <div style="text-align: center;">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 1.5rem;">Ready to Connect?</h2>
+                <p style="color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Let's discuss how I can contribute to your team's success
+                </p>
+                <a id="payment_done" href="https://api.whatsapp.com/send?phone=917210499455&text=Connect%20with%20tarun" target="_blank" style="display: inline-block; padding: 1.5rem 4rem; font-size: 1.3rem; font-weight: 700; text-decoration: none; color: #0a0e17; background: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%); border-radius: 50px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3); position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.05em;" onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 20px 60px rgba(0, 217, 255, 0.5)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 40px rgba(0, 217, 255, 0.3)';">
+                    Payment
                 </a>
             </div>
         </section>
